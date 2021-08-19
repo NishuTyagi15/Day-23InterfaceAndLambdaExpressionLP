@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class NumberPlayList {
     public NumberPlayList() {
@@ -12,7 +13,7 @@ public class NumberPlayList {
     public static void main(String[] args) {
         //creating sample collection
         List<Integer> myList = new ArrayList<Integer>();
-        for (int i = 0; i < 5; i++) myList.add(i);
+        for (int i = 0; i < 2; i++) myList.add(i);
 
         //Method 1: Traversing Using Iterator
         Iterator<Integer> it = myList.iterator();
@@ -47,6 +48,12 @@ public class NumberPlayList {
         //Method 4:Implicit Lambda Function
         myList.forEach(i-> {
             System.out.println("forEach Implicit Lambda Value::"+i);
+        });
+
+        //Method 6:Implicit Lambda Function to Print double Value
+        Function<Integer, Double> doubleFunction = Integer::doubleValue;
+        myList.forEach(i-> {
+            System.out.println("forEach Lambda Double Value::" +doubleFunction.apply(i));
         });
     }
 }
