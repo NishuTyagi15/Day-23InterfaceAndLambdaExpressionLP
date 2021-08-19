@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class NumberPlayList {
     public NumberPlayList() {
@@ -13,7 +14,7 @@ public class NumberPlayList {
     public static void main(String[] args) {
         //creating sample collection
         List<Integer> myList = new ArrayList<Integer>();
-        for (int i = 0; i < 2; i++) myList.add(i);
+        for (int i = 0; i < 4; i++) myList.add(i);
 
         //Method 1: Traversing Using Iterator
         Iterator<Integer> it = myList.iterator();
@@ -40,20 +41,26 @@ public class NumberPlayList {
         });
 
         //Method 4:Explicit Lambda Function
-        Consumer<Integer> myListAction = i-> {
+        Consumer<Integer> myListAction = i -> {
             System.out.println("forEach Explicit Lambda Value::"+i);
         };
         myList.forEach(myListAction);
 
         //Method 4:Implicit Lambda Function
-        myList.forEach(i-> {
+        myList.forEach(i -> {
             System.out.println("forEach Implicit Lambda Value::"+i);
         });
 
         //Method 6:Implicit Lambda Function to Print double Value
         Function<Integer, Double> doubleFunction = Integer::doubleValue;
-        myList.forEach(i-> {
+        myList.forEach(i -> {
             System.out.println("forEach Lambda Double Value::" +doubleFunction.apply(i));
+        });
+
+        //Method 7:Implicit Lambda Function to Check Even
+        Predicate<Integer> isEvenFunction = n -> n%2 == 0;
+        myList.forEach(n -> {
+            System.out.println("forEach Value of" +n+ "Check for Even::"+isEvenFunction.test(n));
         });
     }
 }
